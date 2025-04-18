@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact U-Quiz</title>
+    <link rel="stylesheet" href="contact.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+    --neon-pink: #ff00ff;
+    --electric-blue: #00f3ff;
+    --violet: #9d00ff;
+    --magenta: #ff0066;
+    --cyber-green: #00ff9d;
+    --dark-bg: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+}
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: var(--dark-bg);
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, 
+        var(--neon-pink) 0%, 
+        var(--electric-blue) 50%, 
+        transparent 100%);
+    opacity: 0.05;
+    z-index: 0;
+    animation: particles 20s linear infinite;
+}
+
+@keyframes particles {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Navigation */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-img {
+    height: 40px;
+    filter: drop-shadow(0 0 10px var(--electric-blue));
+}
+
+.logo {
+    font-family: 'Pacifico', cursive;
+    font-size: 2rem;
+    background: linear-gradient(45deg, var(--neon-pink), var(--electric-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.navbar-links a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.navbar-links a:hover {
+    background: rgba(255,255,255,0.1);
+    text-shadow: 0 0 15px var(--electric-blue);
+}
+
+.navbar-links .active {
+    background: rgba(255,255,255,0.2);
+}
+
+.generate-btn {
+    padding: 0.8rem 2rem;
+    background: linear-gradient(45deg, var(--magenta), var(--neon-pink));
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.generate-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255,0,255,0.3);
+}
+
+/* Main Content */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+    margin-top: 80px;
+}
+
+.combined-content-section {
+    display: grid;
+    grid-template-columns: 1fr; /* Ensures single-column layout */
+    gap: 3rem;
+    margin: 2rem 0;
+}
+
+.left-content feature-card {
+    order: 1; /* Ensures it stays on top */
+}
+
+right-content feature-card {
+    order: 2; /* Moves it below left-content */
+}
+
+.feature-card {
+    background: rgba(255,255,255,0.05);
+    padding: 2rem;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(0,243,255,0.2);
+}
+
+/* Contact Page Specific */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.gradient-border {
+    background: linear-gradient(45deg, 
+        var(--neon-pink), 
+        var(--violet),
+        var(--electric-blue));
+    padding: 3px;
+    border-radius: 15px;
+    animation: border-glow 2s ease infinite;
+}
+
+@keyframes border-glow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+.url-input {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(0,0,0,0.6);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    backdrop-filter: blur(10px);
+    font-size: 1rem;
+}
+
+textarea.url-input {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.icon {
+    font-size: 1.5rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.map-container {
+    margin-top: 2rem;
+    border-radius: 15px;
+    overflow: hidden;
+    max-width: 1000px;
+    margin: 2rem auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .combined-content-section {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin: 2rem 0;
+}
+
+    .map-container {
+        margin: 1rem;
+    }
+
+    .navbar-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .generate-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .feature-card {
+        padding: 1.5rem;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+    }
+}
+                
+    </style>
+</head>
+<body>
+    <div class="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <img src="https://img.freepik.com/premium-vector/quiz-logo-with-speech-bubble-icon_149152-811.jpg" 
+                 alt="U-Quiz" 
+                 class="logo-img">
+            <span class="logo">U-Quiz</span>
+        </div>
+        <ul class="navbar-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/feature">Features</a></li>
+            <li><a href="/contact" class="active">Contact</a></li>
+        </ul>
+        <div class="navbar-buttons">
+            <a href="/login" class="generate-btn">Join </a>
+        </div>
+    </nav>
+
+    <!-- Contact Content -->
+    <div class="container">
+        <div class="combined-content-section">
+            <!-- Contact Form -->
+            <div class="left-content feature-card">
+                <h2 class="logo">Get in Touch</h2>
+                <p class="tagline">We'd love to hear from you!</p>
+                
+                <form class="contact-form">
+                    <div class="gradient-border">
+                        <input type="text" 
+                               class="url-input"
+                               placeholder="Your Name">
+                    </div>
+                    <div class="gradient-border">
+                        <input type="email" 
+                               class="url-input"
+                               placeholder="Your Email">
+                    </div>
+                    <div class="gradient-border">
+                        <textarea class="url-input" 
+                                  rows="5"
+                                  placeholder="Your Message"></textarea>
+                    </div>
+                    <button type="submit" class="generate-btn">
+                        Send Message 🚀
+                    </button>
+                </form>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="right-content feature-card">
+                <div class="contact-info">
+                    <div class="icon">📍</div>
+                    <h3>Our Office</h3>
+                    <p>123, abc road<br>Knowledge Park III, Greater Noida</p>
+                    
+                    <div class="icon">📞</div>
+                    <h3>Phone</h3>
+                    <p>+91 5623745670</p>
+                    <p>+91 9023710670</p>
+                    
+                    <div class="icon">✉️</div>
+                    <h3>Email</h3>
+                    <p>support@u-quiz.com</p>
+                </div>
+
+                <div class="social-links">
+                    <a href="#" class="generate-btn social-btn">
+                        <span class="icon">💬</span> Chat Support
+                    </a>
+                    <a href="#" class="generate-btn social-btn">
+                        <span class="icon">    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
+      <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+    </svg></span> Twitter
+                    </a>
+                    <a href="#" class="generate-btn social-btn">
+                        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm0-2A7.5 7.5 0 0 0 0 7.5v9A7.5 7.5 0 0 0 7.5 24h9a7.5 7.5 0 0 0 7.5-7.5v-9A7.5 7.5 0 0 0 16.5 0h-9zm9.25 4.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zM12 6.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11zm0 2A3.5 3.5 0 1 0 12 15a3.5 3.5 0 0 0 0-7z"/>
+  </svg></span> Instagram
+                    </a>
+                    <a href="#" class="generate-btn social-btn">
+                        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.286c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.286h-3v-5.5c0-1.379-.042-3.152-1.916-3.152-1.918 0-2.084 1.496-2.084 3.04v5.612h-3v-10h2.882v1.366h.041c.402-.765 1.385-1.572 2.852-1.572 3.054 0 3.625 2.009 3.625 4.621v5.585z"/>
+  </svg></span> LinkedIn
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map Section -->
+        <div class="compete-section">
+            <div class="feature-card">
+                <h2 class="logo">Find Us</h2>
+                <div class="gradient-border map-container">
+                    <!-- Embed your map here -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d448270.0456176859!2d77.15056563124999!3d28.4743875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cc18cf5a1b3e1%3A0xa14814df53e857ff!2sGreater%20Noida%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1711800000000" 
+                            width="100%" 
+                            height="400" 
+                            style="border:0; border-radius: 15px;" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Active link styling
+        document.querySelectorAll('.navbar-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                document.querySelectorAll('.navbar-links a').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Active link styling
+        document.querySelectorAll('.navbar-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                document.querySelectorAll('.navbar-links a').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

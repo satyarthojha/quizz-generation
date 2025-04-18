@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Playlists</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-pink: #ff00ff;
+            --electric-blue: #00f3ff;
+            --violet: #9d00ff;
+            --magenta: #ff0066;
+            --cyber-green: #00ff9d;
+            --dark-bg: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: var(--dark-bg);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .particle-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, var(--neon-pink) 0%, var(--electric-blue) 50%, transparent 100%);
+            opacity: 0.05;
+            z-index: 0;
+            animation: particle-rotate 20s linear infinite;
+        }
+
+        @keyframes particle-rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--neon-pink), var(--electric-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 50px;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+        }
+
+        .playlist-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .playlist-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .playlist-card:nth-child(1) { animation-delay: 0.1s; }
+        .playlist-card:nth-child(2) { animation-delay: 0.2s; }
+        .playlist-card:nth-child(3) { animation-delay: 0.3s; }
+        .playlist-card:nth-child(4) { animation-delay: 0.4s; }
+        .playlist-card:nth-child(5) { animation-delay: 0.5s; }
+
+        .playlist-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--cyber-green);
+            text-shadow: 0 0 10px var(--cyber-green);
+        }
+
+        .playlist-card h2 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, var(--neon-pink), var(--violet));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .playlist-count {
+            color: #ccc;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .view-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: linear-gradient(45deg, var(--magenta), var(--neon-pink));
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px var(--magenta);
+        }
+
+        .view-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px var(--neon-pink);
+        }
+
+        @media (max-width: 768px) {
+            .playlist-container {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particle-background"></div>
+    <div class="container">
+        <h1>Discover Playlists</h1>
+        <div class="playlist-container">
+            <% playlists.forEach(playlist => { %>
+                <div class="playlist-card">
+                    <div class="playlist-icon">🎵</div>
+                    <h2><%= playlist.title %></h2>
+                    <span class="playlist-count"><%= playlist.videoCount || 'Multiple' %> videos</span>
+                    <a href="/playlists/<%= playlist.id %>" class="view-btn">Explore</a>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</body>
+</html>

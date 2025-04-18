@@ -1,0 +1,384 @@
+<!DOCTYPE >
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U-Quiz - Video Learning Platform</title>
+
+     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Lobster&family=Dancing+Script&display=swap" rel="stylesheet">
+    
+    <style>
+:root {
+    --neon-pink: #ff00ff;
+    --electric-blue: #00f3ff;
+    --violet: #9d00ff;
+    --magenta: #ff0066;
+    --cyber-green: #00ff9d;
+    --dark-bg: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+}
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: var(--dark-bg);
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.particle-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, 
+        var(--neon-pink) 0%, 
+        var(--electric-blue) 50%, 
+        transparent 100%);
+    opacity: 0.05;
+    z-index: 0;
+    animation: particle-rotate 20s linear infinite;
+}
+
+@keyframes particle-rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Navigation */
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-logo {
+    height: 40px;
+    filter: drop-shadow(0 0 10px var(--electric-blue));
+}
+
+.brand-name {
+    font-family: 'Pacifico', cursive;
+    font-size: 2rem;
+    background: linear-gradient(45deg, var(--neon-pink), var(--electric-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    background: rgba(255,255,255,0.1);
+    text-shadow: 0 0 15px var(--electric-blue);
+}
+
+.primary-btn {
+    padding: 0.8rem 2rem;
+    background: linear-gradient(45deg, var(--magenta), var(--neon-pink));
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Hero Section */
+.hero-container {
+    margin-top: 8rem;
+    padding: 2rem;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.hero-text {
+    padding: 2rem;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    background: linear-gradient(45deg, var(--neon-pink), var(--electric-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 1rem 0;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(255,0,255,0.2);
+}
+
+/* Video Input Section */
+.video-input-section {
+    padding: 4rem 2rem;
+}
+
+.input-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.gradient-wrapper {
+    background: linear-gradient(45deg, 
+        var(--neon-pink), 
+        var(--violet),
+        var(--electric-blue));
+    padding: 3px;
+    border-radius: 15px;
+    margin: 2rem 0;
+}
+
+.url-input {
+    width: 100%;
+    padding: 1.5rem;
+    background: rgba(0,0,0,0.6);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    backdrop-filter: blur(10px);
+}
+
+.quiz-generator-btn {
+    width: 100%;
+    padding: 1.5rem;
+    background: linear-gradient(45deg, var(--magenta), var(--neon-pink));
+    border: none;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.youtube-section {
+    padding: 5rem 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(5px);
+    text-align: center;
+    border-radius: 20px;
+    margin: 4rem auto;
+    max-width: 1000px;
+    box-shadow: 0 0 40px rgba(0, 255, 157, 0.1);
+}
+
+.youtube-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.youtube-title {
+    font-size: 2.5rem;
+    background: linear-gradient(45deg, var(--electric-blue), var(--cyber-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+}
+
+.youtube-description {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+.youtube-section {
+    animation: fadeInUp 1.5s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Content Sections */
+.content-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin: 4rem 0;
+    align-items: center;
+}
+
+.reverse {
+    direction: rtl;
+}
+
+.content-media img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.content-info {
+    padding: 2rem;
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.secondary-btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: linear-gradient(45deg, var(--magenta), var(--neon-pink));
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-top: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-content,
+    .content-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .reverse {
+        direction: ltr;
+    }
+    
+    .main-nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+    </style>
+
+
+</head>
+<body>
+    <div class="particle-background"></div>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-brand">
+            <img src="https://img.freepik.com/premium-vector/quiz-logo-with-speech-bubble-icon_149152-811.jpg" 
+                 alt="U-QUIZ Logo"
+                 class="nav-logo">
+            <span class="brand-name">U-Quiz</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="/homepage" class="nav-link active">Home</a></li>
+            <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="/feature" class="nav-link">Features</a></li>
+            <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="/login" class="primary-btn">Join</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-container">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h3 class="hero-subtitle">Discover the power of interactive learning</h3>
+                <h1 class="hero-title">Elevate Your YouTube Experience</h1>
+                <h3 class="hero-description">Unlock a world of personalized content and engaging quizzes</h3>
+                <a href="/getstarted" class="secondary-btn">Get Started</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://img.freepik.com/free-photo/girl-deciding-what-product-better-look-up-thoughtful-touch-chin-thinking-smiling-shopping-alone-making-choice-considering-proposals_176420-44746.jpg" 
+                     alt="Learning Illustration">
+            </div>
+            <section class="youtube-section">
+                <div class="youtube-wrapper">
+                    <h1 class="youtube-title">Explore YouTube Playlists</h1>
+                    <p class="youtube-description">Dive into curated video content and test your knowledge with auto-generated quizzes.</p>
+                    <a href="/playlists" class="secondary-btn">Get Playlists</a>
+                </div>
+            </section>
+        </div>
+    </section>
+<br>
+
+     
+    
+
+    <!-- Content Sections -->
+    <section class="content-block">
+        <div class="content-row">
+            <div class="content-media">
+                <img src="https://kwizzbit.com/wp-content/uploads/2023/11/AdobeStock_647080085-min.png.webp" 
+                     alt="Quiz Example">
+            </div>
+            <div class="content-info">
+                <h2 class="content-title">Evaluate Your Knowledge</h2>
+                <p class="content-text">Discover a world of personalized quizzes that elevate your YouTube experience</p>
+                <a href="feature.ejs" class="secondary-btn">Learn More</a>
+            </div>
+        </div>
+
+        <div class="content-row reverse">
+            <div class="content-media">
+                <img src="https://www.sandiegouniontribune.com/wp-content/uploads/migration/2024/03/11/0000018e-1530-d276-a7ee-bf3032820000.jpg?w=535" 
+                     alt="Quiz Cubes">
+            </div>
+            <div class="content-info">
+                <h2 class="content-title">Personalized Learning</h2>
+                <p class="content-text">Dive into curated YouTube playlists and engage with quizzes</p>
+                <a href="feature.html" class="secondary-btn">Learn More</a>
+            </div>
+        </div>
+
+        <div class="content-row">
+            <div class="content-media">
+                <img src="https://st2.depositphotos.com/1518767/11551/i/450/depositphotos_115511822-Group-of-excited-friends-using-laptop.jpg" 
+                     alt="Social Learning">
+            </div>
+            <div class="content-info">
+                <h2 class="content-title">Leaderboard Challenge</h2>
+                <p class="content-text">Compete with friends and climb the ranks</p>
+                <a href="/leaderboard" class="secondary-btn">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <script src="main.js"></script>
+</body>
+</html>
